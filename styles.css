@@ -42,23 +42,33 @@ body {
     overflow-x: hidden;
     transition: var(--transition);
 }
+* NAVIGATION FIX */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; height: 70px; position: fixed; top: 0; width: 100%;
+            z-index: 1000; background: var(--glass); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { font-size: 1.2rem; font-weight: 800; text-decoration: none; color: var(--text); }
+        .logo span { color: var(--accent); }
 
-/* 3. NAVIGATION (GLASSMORPHISM) */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5%;
-    height: 80px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background: var(--surface-glass);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--border);
-}
+        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.85rem; opacity: 0.8; }
+        
+        .theme-switch {
+            cursor: pointer; width: 40px; height: 20px; background: var(--text-dim);
+            border-radius: 20px; position: relative;
+        }
+        .theme-switch::before {
+            content: ''; position: absolute; width: 14px; height: 14px;
+            background: white; border-radius: 50%; top: 3px; left: 3px; transition: 0.3s;
+        }
+        [data-theme="light"] .theme-switch::before { transform: translateX(20px); }
+
+        /* HERO */
+        .hero { padding: 140px 5% 60px; text-align: center; }
+        .hero h1 { font-size: clamp(2rem, 10vw, 3.5rem); margin-bottom: 15px; }
+        .hero span { color: var(--accent); }
 
 .logo {
     font-size: 1.6rem;
@@ -289,3 +299,4 @@ footer {
     .footer-content { grid-template-columns: 1fr; text-align: center; }
     .slide { min-width: 80vw; height: 350px; }
 }
+
