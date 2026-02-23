@@ -80,6 +80,43 @@ body {
     perspective: 2000px; /* High perspective for deep 3D effect */
     overflow: hidden;
 }
+.video {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+/* Instagram Box Styling */
+.video blockquote {
+    width: 420px;              /* Video Width */
+    max-width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 10px;
+    
+    /* Gradient Border */
+    background: linear-gradient(135deg, #ff0066, #ffcc00, #00ccff);
+    
+    /* Shadow Effect */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    
+    transition: all 0.4s ease;
+}
+
+/* Inner white background */
+.video blockquote::before {
+    content: "";
+    display: block;
+    background: white;
+    border-radius: 15px;
+    position: absolute;
+}
+
+/* Hover Effect */
+.video blockquote:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
 
 .slider-container {
     position: relative;
@@ -206,4 +243,5 @@ footer { padding: 60px 10%; background: var(--surface); border-top: 1px solid va
     .slide.prev { transform: translate3d(-100px, 0, 0) scale(0.6); }
     .slide.next { transform: translate3d(100px, 0, 0) scale(0.6); }
 }
+
 
