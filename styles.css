@@ -290,8 +290,3 @@ footer {
     .slide { min-width: 80vw; height: 350px; }
 
 }
-.video{
-    height: 640px;
-    width: 360px;
-    background-color: black;
-}
