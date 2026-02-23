@@ -1,81 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OMII CINEMATIC</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMII CINEMATIC | Master the Lens</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav class="navbar">
-<a href="index.html" class="logo">OMII <span>CINEMATIC</span></a>
-<ul class="nav-links">
-<li><a href="index.html">Home</a></li>
-<li><a href="tutorials.html">Tutorials</a></li>
-<li><a href="color.html">Color</a></li>
-<li><a href="gear.html">Gear</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
+    <a href="index.html" class="logo">OMII <span>CINEMATIC</span></a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Tutorials</a></li>
+        <li><a href="#">Color</a></li>
+        <li><a href="#">Gear</a></li>
+        <div class="theme-switch" id="themeToggle"></div>
+    </ul>
 </nav>
 
 <header class="hero">
-<div class="hero-content">
-<h1>Create <span>Cinematic Stories</span></h1>
-<p>Professional filmmaking tutorials for serious creators.</p>
-<button class="btn">Start Learning</button>
-</div>
+    <h1>Tell Your <span>Story</span></h1>
+    <p>We provide the tools, techniques, and inspiration to turn your raw footage into cinematic masterpieces.</p>
+    <button class="btn">Explore the Academy</button>
 </header>
+
 <section class="slider-section">
-    <h2 class="section-title">Featured Cinematic Shots</h2>
-
+    <h2 class="section-title">Visual Inspiration</h2>
     <div class="slider-container">
-        <div class="slider-track">
-
-            <div class="slide"><img src="img1.jpg"></div>
-            <div class="slide"><img src="img2.jpg"></div>
-            <div class="slide"><img src="img3.jpg"></div>
-            <div class="slide"><img src="img4.jpg"></div>
-            <div class="slide"><img src="img5.jpg"></div>
-            <div class="slide"><img src="img6.jpg"></div>
-            <div class="slide"><img src="img7.jpg"></div>
-
-        </div>
+        <div class="slide active"><img src="https://images.unsplash.com/photo-1492691523567-6170c2845d4e?auto=format&fit=crop&w=800" alt="Cinematic 1"></div>
+        <div class="slide next"><img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=800" alt="Cinematic 2"></div>
+        <div class="slide hidden"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800" alt="Cinematic 3"></div>
+        <div class="slide hidden"><img src="https://images.unsplash.com/photo-15120706327b2-4a8ee093f60b?auto=format&fit=crop&w=800" alt="Cinematic 4"></div>
+        <div class="slide prev"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800" alt="Cinematic 5"></div>
     </div>
-</section><section class="slider-section">
-<h2 class="section-title">Featured Cinematic Shots</h2>
-
 </section>
 
-<section class="content-section">
-<h2 class="section-title">Why Choose Us?</h2>
-
-<div class="features">
-<div class="feature-card">
-<h3>Professional Guidance</h3>
-<p>Learn industry-level techniques step by step.</p>
-</div>
-
-<div class="feature-card">
-<h3>Creative Editing</h3>
-<p>Master transitions, sound design and pacing.</p>
-</div>
-
-<div class="feature-card">
-<h3>Color Mastery</h3>
-<p>Understand cinematic grading and film look.</p>
-</div>
-</div>
+<section align="center" class="grid">
+    <div class="card">
+        <h3>01. Lighting</h3>
+        <p>Master the 3-point setup and learn how to use natural light to create moody, high-contrast scenes.</p>
+    </div>
+    <div class="card">
+        <h3>02. Color Grading</h3>
+        <p>Deep dive into DaVinci Resolve and Premiere Pro to achieve that Hollywood teal and orange look.</p>
+    </div>
+    <div class="card">
+        <h3>03. Sound Design</h3>
+        <p>50% of cinema is sound. Learn how to layer foley, ambiance, and scores for maximum impact.</p>
+    </div>
 </section>
 
-<footer>
-<p>OMII CINEMATIC</p>
-<p>Email: omkarbhope06@gmail.com</p>
-<p>Instagram: @_omi.cinematic</p>
+<footer align="center">
+    <p>OMII CINEMATIC &copy; 2026</p>
+    <div class="socials">
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+        <a href="#">Twitter</a>
+    </div>
+    <p style="color: var(--text-dim); font-size: 0.7rem; margin-top: 10px;">omkarbhope06@gmail.com</p>
 </footer>
 
 <script src="script.js"></script>
 </body>
-
 </html>
-
