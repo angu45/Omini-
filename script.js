@@ -1,36 +1,64 @@
-const slides = document.querySelectorAll('.slide');
-let currentIndex = 0;
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. THEME TOGGLE LOGIC
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
 
-function updateSlider() {
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+
+    // 2. SLIDER LOGIC
+    const slides = document.querySelectorAll('.slide');
+    let currentIndex = 0;
+    let autoPlayInterval;
+
+    function updateSlider() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active', 'prev', 'next', 'hidden');
+            
+            if (index === currentIndex) {
+                slide.classList.add('active');
+            } else if (index === (currentIndex - 1 + slides.length) % slides.length) {
+                slide.classList.add('prev');
+            } else if (index === (currentIndex + 1) % slides.length) {
+                slide.classList.add('next');
+            } else {
+                slide.classList.add('hidden');
+            }
+        });
+    }
+
+    // Click to change slide
     slides.forEach((slide, index) => {
-        // Remove all classes first
-        slide.classList.remove('active', 'prev', 'next', 'hidden');
-
-        if (index === currentIndex) {
-            slide.classList.add('active');
-        } else if (index === (currentIndex - 1 + slides.length) % slides.length) {
-            slide.classList.add('prev');
-        } else if (index === (currentIndex + 1) % slides.length) {
-            slide.classList.add('next');
-        } else {
-            slide.classList.add('hidden');
-        }
+        slide.addEventListener('click', () => {
+            currentIndex = index;
+            updateSlider();
+            resetAutoPlay(); // Reset timer when user interacts
+        });
     });
-}
 
-// Click on any slide to bring it to front
-slides.forEach((slide, index) => {
-    slide.addEventListener('click', () => {
-        currentIndex = index;
-        updateSlider();
-    });
-});
+    // Auto-play Functionality
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        }, 4000);
+    }
 
-// Auto Rotation (Optional)
-setInterval(() => {
-    currentIndex = (currentIndex + 1) % slides.length;
+    function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+    }
+
+    // Initialize
     updateSlider();
-}, 5000);
-
-// Initialize
-updateSlider();
+    startAutoPlay();
+});
