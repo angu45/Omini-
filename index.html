@@ -138,14 +138,6 @@ body.light-mode {
     color: transparent;
 }
 
-.model-img {
-    position: absolute;
-    bottom: 0;
-    height: 70%;
-    z-index: 5;
-    filter: drop-shadow(0 0 30px var(--shadow-color));
-}
-
 .slider-author {
     position: absolute;
     bottom: 30px;
@@ -200,26 +192,6 @@ body.light-mode {
             <div class="item" style="--p: 9;"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=600&fit=crop" alt="Grand Canyon Cinematic"></div>
             <div class="item" style="--p: 10;"><img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&h=600&fit=crop" alt="Starry Night Landscape"></div>
 </div>
-
-        <div class="content-layer">
-            <h1 data-content="OMINICINEMATICS">OMINICINEMATICS</h1>
-            <img src="https://iili.io/q7OMK2n.png" 
-     id="cameraman-model" 
-     class="model-img" 
-     alt="Omii Cinematic Cameraman">
-
-            <div class="slider-author">
-                <div>
-                    <p>Vlogger & Editor</p>
-                    <h3>OMII CINEMATIC</h3>
-                </div>
-                <div>
-                    <p>Location</p>
-                    <h3>PARBHANI</h3>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
 <section class="content-section">
@@ -255,39 +227,9 @@ body.light-mode {
 </footer>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<script src="script.js"> // Add this to your script.js or inside a <script> tag
-const modelImg = document.querySelector('.model-img');
-const images = [
-  "https://iili.io/q7OMK2n.png",
-"https://iili.io/q7OMjyJ.png",
-"https://iili.io/q7OMXYg.png",
-"https://iili.io/q7OGRbR.png"
-];
-
-let currentIndex = 0;
-
-function rotateModelImage() {
-    // 1. Start the flip animation
-    modelImg.style.transform = "rotateY(90deg)";
-    modelImg.style.opacity = "0";
-
-    setTimeout(() => {
-        // 2. Change the image source while invisible
-        currentIndex = (currentIndex + 1) % images.length;
-        modelImg.src = images[currentIndex];
-
-        // 3. Flip back to normal
-        modelImg.style.transform = "rotateY(0deg)";
-        modelImg.style.opacity = "1";
-    }, 400); // Wait for half the transition time to swap
-}
-
-// Change image every 3 seconds
-setInterval(rotateModelImage, 3000);
-
-</script>
-</body>
+<script src="script.js"></script ></body>
 </html>
+
 
 
 
