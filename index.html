@@ -41,7 +41,19 @@ body.light-mode {
     position: relative;
     /* Removed solid background - it will now use the body's background */
     background: transparent; 
+} .model-img {
+    position: absolute;
+    bottom: 0;
+    height: 70%;
+    z-index: 5;
+    filter: drop-shadow(0 0 30px var(--shadow-color));
+    
+    /* Animation Properties */
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
 }
+
 
 .section-title {
     text-align: center;
@@ -240,24 +252,41 @@ body.light-mode {
 </footer>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<script src="script.js">  const themeToggle = document.getElementById('themeToggle');
-const body = document.body;
+<script src="script.js"> // Add this to your script.js or inside a <script> tag
+const modelImg = document.querySelector('.model-img');
+const images = [
+    "https://png.pngtree.com/png-vector/20231017/ourmid/pngtree-photographer-cameraman-on-a-transparent-background-png-image_10204646.png", // Original
+    "https://i.ibb.co/nq9hSPWN/image1.png",
+    "https://i.ibb.co/ZpZ092p7/image2.png",
+    "https://i.ibb.co/Rpg77v6z/image3.png",
+    "https://i.ibb.co/TBKpwQMK/image4.png"
+];
 
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('light-mode');
-    
-    // Optional: Save preference to local storage
-    const isLight = body.classList.contains('light-mode');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-});
+let currentIndex = 0;
 
-// Load saved theme on page start
-if (localStorage.getItem('theme') === 'light') {
-    body.classList.add('light-mode');
+function rotateModelImage() {
+    // 1. Start the flip animation
+    modelImg.style.transform = "rotateY(90deg)";
+    modelImg.style.opacity = "0";
+
+    setTimeout(() => {
+        // 2. Change the image source while invisible
+        currentIndex = (currentIndex + 1) % images.length;
+        modelImg.src = images[currentIndex];
+
+        // 3. Flip back to normal
+        modelImg.style.transform = "rotateY(0deg)";
+        modelImg.style.opacity = "1";
+    }, 400); // Wait for half the transition time to swap
 }
+
+// Change image every 3 seconds
+setInterval(rotateModelImage, 3000);
+
 </script>
 </body>
 </html>
+
 
 
 
