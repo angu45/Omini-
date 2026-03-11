@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Omii Cinematic | Best Video Editor & Vlogger in Parbhani</title>
-    <meta name="description" content="(Omii Cinematic) - Professional Video Editor and Vlogger from Parbhani. Specializing in cinematic films, wedding shoots, and YouTube content creation in Parbhani City.">
-    <meta name="keywords" content="Parbhani Video Editor, Parbhani Vlogger, Omii Cinematic, Best Cinematographer in Parbhani, Video Editing Services Parbhani, Marathi Vlogger, Cinematic Shoots Parbhani, Editing Studio Parbhani">
-    <meta property="og:title" content="Omii Cinematic | Professional Editor & Vlogger in Parbhani">
-    <meta property="og:description" content="Cinematic video production and professional editing services in Parbhani. Check out my portfolio and gear.">
-    <meta property="og:image" content="https://www.omini-cinematics.vercel.app/og-image.jpg">
-    <meta property="og:url" content="https://www.omini-cinematics.vercel.app/">
-    <meta name="geo.region" content="IN-MH" />
-    <meta name="geo.placename" content="Parbhani" />
-    <link rel="canonical" href="https://omini-cinematics.vercel.app/index.html">
+    <title>Omii Cinematic | 3D Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="styles.css">
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V23LLFK6HF"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -22,7 +15,8 @@
     </script>
 
     <style>
-        /* --- Root Variables for Theme Toggle --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700;900&display=swap');
+
         :root {
             --text-outline: rgba(255, 255, 255, 0.6);
             --shadow-color: rgba(0, 0, 0, 0.8);
@@ -35,36 +29,34 @@
             --footer-text: #333333;
         }
 
-        /* --- Slider Section Container --- */
+        body {
+            margin: 0;
+            background-color: #000; /* Fallback */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* --- Slider Section --- */
         .slider-section {
-            padding: 80px 0;
+            padding: 40px 0;
             position: relative;
             background: transparent; 
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--footer-text);
-            font-weight: 700;
-        }
-
-        /* --- 3D Slider Area --- */
         .banner {
             width: 100%;
-            height: 80vh;
+            height: 85vh;
             text-align: center;
             overflow: hidden;
             position: relative;
             background: transparent; 
         }
 
+        /* 3D Slider Container */
         .banner .slider {
             position: absolute;
             width: 180px;
             height: 250px;
-            top: 10%;
+            top: 15%;
             left: calc(50% - 90px);
             transform-style: preserve-3d;
             transform: perspective(1000px);
@@ -90,9 +82,15 @@
             border-radius: 12px;
             box-shadow: 0 10px 25px var(--shadow-color);
             border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.5s ease;
         }
 
-        /* --- Centerpiece Content --- */
+        .banner .slider .item:hover img {
+            border-color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* Center Content Layers */
         .content-layer {
             position: absolute;
             top: 0;
@@ -106,12 +104,13 @@
         }
 
         .content-layer h1 {
-            font-size: 8vw;
+            font-size: 10vw;
             font-weight: 900;
             color: transparent;
             white-space: nowrap;
             margin: 0;
             position: relative;
+            z-index: 1;
         }
 
         .content-layer h1::after {
@@ -123,19 +122,19 @@
             color: transparent;
         }
 
+        /* Cameraman Image with Animation */
         .model-img {
             position: absolute;
             bottom: 0;
-            height: 70%;
+            height: 75%;
             z-index: 5;
             filter: drop-shadow(0 0 30px var(--shadow-color));
-            /* Added Transition for the Flip Logic */
-            transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
             transform-style: preserve-3d;
             backface-visibility: hidden;
-            pointer-events: auto;
         }
 
+        /* Author/Location Info */
         .slider-author {
             position: absolute;
             bottom: 30px;
@@ -147,62 +146,44 @@
             padding: 0 5%;
         }
 
-        .slider-author h3 { margin: 0; font-size: 1.5rem; text-transform: uppercase; }
-        .slider-author p { margin: 0; opacity: 0.6; font-size: 0.8rem; }
+        .slider-author h3 { margin: 0; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .slider-author p { margin: 0; opacity: 0.6; font-size: 0.7rem; }
+
     </style>
 </head>
 <body>
 
-<nav class="navbar">
-    <a href="index.html" class="logo">OMII <span>CINEMATIC</span></a>
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="contacr.html">Contact</a></li>
-        <li><a href="tutorials.html">Tutorials</a></li>
-        <li><a href="color.html">Color</a></li>
-        <li><a href="gear.html">Gear</a></li>
-        <div class="theme-switch" id="themeToggle"></div>
-    </ul>
-</nav>
-
-<header class="hero">
-    <div class="hero-content">
-        <h1>Create <span>Cinematic Stories</span></h1>
-        <p>Professional filmmaking tutorials for serious creators.</p>
-        <button class="btn">Start Learning</button>
-    </div>
-</header>
-
 <section class="slider-section">
-    <h2 class="section-title">Featured Cinematic Shots</h2>
     <div class="banner">
+        
         <div class="slider" style="--q: 10;">
-            <div class="item" style="--p: 1;"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400&h=600&fit=crop" alt="Cinematic Mountains"></div>
-            <div class="item" style="--p: 2;"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=600&fit=crop" alt="Sunlight Forest"></div>
-            <div class="item" style="--p: 3;"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=600&fit=crop" alt="Alpine Lake"></div>
-            <div class="item" style="--p: 4;"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=400&h=600&fit=crop" alt="Nature Pathway"></div>
-            <div class="item" style="--p: 5;"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=600&fit=crop" alt="Blue Ridge Peaks"></div>
-            <div class="item" style="--p: 6;"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=600&fit=crop" alt="Sunset Valley"></div>
-            <div class="item" style="--p: 7;"><img src="https://images.unsplash.com/photo-1500622344773-5144bc48e7a2?w=400&h=600&fit=crop" alt="Aerial Nature"></div>
-            <div class="item" style="--p: 8;"><img src="https://images.unsplash.com/photo-1433086566503-6714a55906b3?w=400&h=600&fit=crop" alt="Tropical Waterfall"></div>
-            <div class="item" style="--p: 9;"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=600&fit=crop" alt="Grand Canyon Cinematic"></div>
-            <div class="item" style="--p: 10;"><img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&h=600&fit=crop" alt="Starry Night Landscape"></div>
+            <div class="item" style="--p: 1;"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
+            <div class="item" style="--p: 2;"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
+            <div class="item" style="--p: 3;"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
+            <div class="item" style="--p: 4;"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
+            <div class="item" style="--p: 5;"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
+            <div class="item" style="--p: 6;"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
+            <div class="item" style="--p: 7;"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
+            <div class="item" style="--p: 8;"><img src="https://images.unsplash.com/photo-1500622344773-5144bc48e7a2?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
+            <div class="item" style="--p: 9;"><img src="https://images.unsplash.com/photo-1433086566503-6714a55906b3?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
+            <div class="item" style="--p: 10;"><img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
         </div>
 
         <div class="content-layer">
             <h1 data-content="OMINICINEMATICS">OMINICINEMATICS</h1>
-            <img src="https://png.pngtree.com/png-vector/20231017/ourmid/pngtree-photographer-cameraman-on-a-transparent-background-png-image_10204646.png" 
+            
+            <img src="https://i.ibb.co/fVfm7Dcz/1000175965-removebg-preview.png" 
                  id="cameraman-model" 
                  class="model-img" 
-                 alt="Omii Cinematic Cameraman">
+                 alt="Cameraman">
 
             <div class="slider-author">
                 <div>
-                    <p>Vlogger & Editor</p>
+                    <p>Editor & Vlogger</p>
                     <h3>OMII CINEMATIC</h3>
                 </div>
                 <div>
-                    <p>Location</p>
+                    <p>Production City</p>
                     <h3>PARBHANI</h3>
                 </div>
             </div>
@@ -210,56 +191,39 @@
     </div>
 </section>
 
-<footer class="footer">
-    <div class="footer-content">
-        <h2 class="logo">OMII <span>CINEMATIC</span></h2>
-        <p>Turning moments into cinematic memories.</p>
-        <div class="footer-icons">
-            <a href="https://www.instagram.com/_omii.cinematics" target="_blank" class="social-icon insta"><i class="fab fa-instagram"></i></a>
-            <a href="mailto:omkarbhope06@gmail.com" class="social-icon mail"><i class="fas fa-envelope"></i></a>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 OMII CINEMATIC | Designed with Passion</p>
-        </div>
-    </div>
-</footer>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<script src="script.js"></script>
-
 <script>
-    // Targeted logic for the centerpiece image flip
     const modelImg = document.getElementById('cameraman-model');
+    
+    // Direct Image Links for Rotation
     const images = [
-        "https://png.pngtree.com/png-vector/20231017/ourmid/pngtree-photographer-cameraman-on-a-transparent-background-png-image_10204646.png",
-        "https://i.ibb.co/nq9hSPWN/image1.png",
-        "https://i.ibb.co/ZpZ092p7/image2.png",
-        "https://i.ibb.co/Rpg77v6z/image3.png",
-        "https://i.ibb.co/TBKpwQMK/image4.png"
+        "https://i.ibb.co/fVfm7Dcz/1000175965-removebg-preview.png",
+        "https://i.ibb.co/YFrxg0Fw/1000175964-removebg-preview.png",
+        "https://i.ibb.co/jv8HH6wg/1000175966-removebg-preview.png",
+        "https://i.ibb.co/jvVB8CkV/1000175955-removebg-preview.png"
     ];
 
     let currentIndex = 0;
 
-    function rotateModelImage() {
+    function flipModel() {
         if (!modelImg) return;
         
-        // 1. Start flip out
+        // Start Rotation
         modelImg.style.transform = "rotateY(90deg)";
         modelImg.style.opacity = "0";
 
         setTimeout(() => {
-            // 2. Switch source while hidden
+            // Swap Source
             currentIndex = (currentIndex + 1) % images.length;
             modelImg.src = images[currentIndex];
 
-            // 3. Flip back in
+            // Finish Rotation
             modelImg.style.transform = "rotateY(0deg)";
             modelImg.style.opacity = "1";
-        }, 400); 
+        }, 500);
     }
 
-    // Interval set to 3.5 seconds for a smooth professional feel
-    setInterval(rotateModelImage, 3500);
+    // Flip every 4 seconds
+    setInterval(flipModel, 4000);
 </script>
 
 </body>
