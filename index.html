@@ -1,21 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Omii Cinematic | 3D Portfolio</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="styles.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V23LLFK6HF"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-V23LLFK6HF');
-    </script>
-
+    <title>Omii Cinematic | 3D Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&display=swap');
 
         :root {
             --text-outline: rgba(255, 255, 255, 0.6);
@@ -31,35 +21,39 @@
 
         body {
             margin: 0;
-            background-color: #000; /* Fallback */
+            background-color: #000;
             font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* --- Slider Section --- */
         .slider-section {
-            padding: 40px 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
-            background: transparent; 
+            background: transparent;
         }
 
+        /* 3D Slider Area */
         .banner {
             width: 100%;
-            height: 85vh;
-            text-align: center;
-            overflow: hidden;
+            height: 100%;
             position: relative;
-            background: transparent; 
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* 3D Slider Container */
-        .banner .slider {
+        .slider {
             position: absolute;
             width: 180px;
             height: 250px;
             top: 15%;
-            left: calc(50% - 90px);
             transform-style: preserve-3d;
-            transform: perspective(1000px);
+            transform: perspective(1000px) rotateX(-12deg);
             animation: autoRun 25s linear infinite;
             z-index: 2;
         }
@@ -69,32 +63,24 @@
             to { transform: perspective(1000px) rotateX(-12deg) rotateY(360deg); }
         }
 
-        .banner .slider .item {
+        .item {
             position: absolute;
             inset: 0;
             transform: rotateY(calc((var(--p) - 1) * (360 / var(--q)) * 1deg)) translateZ(500px);
         }
 
-        .banner .slider .item img {
+        .item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 12px;
             box-shadow: 0 10px 25px var(--shadow-color);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.5s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .banner .slider .item:hover img {
-            border-color: #fff;
-            transform: scale(1.1);
-        }
-
-        /* Center Content Layers */
+        /* Center Content - Cameraman and Text */
         .content-layer {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             display: flex;
@@ -105,36 +91,25 @@
 
         .content-layer h1 {
             font-size: 10vw;
-            font-weight: 900;
             color: transparent;
-            white-space: nowrap;
-            margin: 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        .content-layer h1::after {
-            position: absolute;
-            inset: 0;
-            content: attr(data-content);
-            z-index: 10;
             -webkit-text-stroke: 1.5px var(--text-outline);
-            color: transparent;
+            margin: 0;
+            z-index: 1;
+            text-transform: uppercase;
         }
 
-        /* Cameraman Image with Animation */
         .model-img {
             position: absolute;
             bottom: 0;
             height: 75%;
             z-index: 5;
             filter: drop-shadow(0 0 30px var(--shadow-color));
+            /* Animation Transition */
             transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
             transform-style: preserve-3d;
             backface-visibility: hidden;
         }
 
-        /* Author/Location Info */
         .slider-author {
             position: absolute;
             bottom: 30px;
@@ -142,13 +117,11 @@
             display: flex;
             justify-content: space-between;
             color: var(--footer-text);
-            z-index: 12;
             padding: 0 5%;
         }
 
-        .slider-author h3 { margin: 0; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; }
+        .slider-author h3 { margin: 0; font-size: 1.2rem; letter-spacing: 2px; }
         .slider-author p { margin: 0; opacity: 0.6; font-size: 0.7rem; }
-
     </style>
 </head>
 <body>
@@ -157,22 +130,22 @@
     <div class="banner">
         
         <div class="slider" style="--q: 10;">
-            <div class="item" style="--p: 1;"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
-            <div class="item" style="--p: 2;"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
-            <div class="item" style="--p: 3;"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
-            <div class="item" style="--p: 4;"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
-            <div class="item" style="--p: 5;"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
-            <div class="item" style="--p: 6;"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
-            <div class="item" style="--p: 7;"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
-            <div class="item" style="--p: 8;"><img src="https://images.unsplash.com/photo-1500622344773-5144bc48e7a2?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
-            <div class="item" style="--p: 9;"><img src="https://images.unsplash.com/photo-1433086566503-6714a55906b3?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
-            <div class="item" style="--p: 10;"><img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&h=600&fit=crop" alt="Cinematic Nature"></div>
+            <div class="item" style="--p: 1;"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=600&fit=crop"></div>
+            <div class="item" style="--p: 2;"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400&h=600&fit=crop"></div>
+            <div class="item" style="--p: 3;"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=600&fit=crop"></div>
+            <div class="item" style="--p: 4;"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=600&fit=crop"></div>
+            <div class="item" style="--p: 5;"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=400&h=600&fit=crop"></div>
+            <div class="item" style="--p: 6;"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=600&fit=crop"></div>
+            <div class="item" style="--p: 7;"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=600&fit=crop"></div>
+            <div class="item" style="--p: 8;"><img src="https://images.unsplash.com/photo-1500622344773-5144bc48e7a2?w=400&h=600&fit=crop"></div>
+            <div class="item" style="--p: 9;"><img src="https://images.unsplash.com/photo-1433086566503-6714a55906b3?w=400&h=600&fit=crop"></div>
+            <div class="item" style="--p: 10;"><img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&h=600&fit=crop"></div>
         </div>
 
         <div class="content-layer">
-            <h1 data-content="OMINICINEMATICS">OMINICINEMATICS</h1>
+            <h1>OMINICINEMATICS</h1>
             
-            <img src="https://i.ibb.co/fVfm7Dcz/1000175965-removebg-preview.png" 
+            <img src="https://i.ibb.co/nq9hSPWN/1000175970.png" 
                  id="cameraman-model" 
                  class="model-img" 
                  alt="Cameraman">
@@ -194,36 +167,36 @@
 <script>
     const modelImg = document.getElementById('cameraman-model');
     
-    // Direct Image Links for Rotation
+    // Direct Links to the images you uploaded
     const images = [
-        "https://i.ibb.co/fVfm7Dcz/1000175965-removebg-preview.png",
-        "https://i.ibb.co/YFrxg0Fw/1000175964-removebg-preview.png",
-        "https://i.ibb.co/jv8HH6wg/1000175966-removebg-preview.png",
-        "https://i.ibb.co/jvVB8CkV/1000175955-removebg-preview.png"
+        "https://i.ibb.co/nq9hSPWN/1000175970.png",
+        "https://i.ibb.co/ZpZ092p7/1000175967.png",
+        "https://i.ibb.co/Rpg77v6z/1000175969.png",
+        "https://i.ibb.co/TBKpwQMK/1000175968.png"
     ];
 
     let currentIndex = 0;
 
-    function flipModel() {
+    function flipAndChange() {
         if (!modelImg) return;
         
-        // Start Rotation
+        // 1. Start the flip out
         modelImg.style.transform = "rotateY(90deg)";
         modelImg.style.opacity = "0";
 
         setTimeout(() => {
-            // Swap Source
+            // 2. Change the source while hidden
             currentIndex = (currentIndex + 1) % images.length;
             modelImg.src = images[currentIndex];
 
-            // Finish Rotation
+            // 3. Flip back in
             modelImg.style.transform = "rotateY(0deg)";
             modelImg.style.opacity = "1";
-        }, 500);
+        }, 500); 
     }
 
-    // Flip every 4 seconds
-    setInterval(flipModel, 4000);
+    // Interval set to 4 seconds
+    setInterval(flipAndChange, 4000);
 </script>
 
 </body>
