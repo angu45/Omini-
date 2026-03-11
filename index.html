@@ -1,9 +1,15 @@
-<!DOCTYPE html>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">OMII <span>CINEMATIC</span></a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="contacr.html">Contact</a></li>
+        <li><a href="tutorials.html">Tutorials</a></li>
+        <li><a href="color.html">Color</a></li>
+        <li><a hr<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Omii Cinematic | Best Video Editor & Vlogger in Parbhani</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="(Omii Cinematic) - Professional Video Editor and Vlogger from Parbhani. Specializing in cinematic films, wedding shoots, and YouTube content creation in Parbhani City.">
     <meta name="keywords" content="Parbhani Video Editor, Parbhani Vlogger, Omii Cinematic, Best Cinematographer in Parbhani, Video Editing Services Parbhani, Marathi Vlogger, Cinematic Shoots Parbhani, Editing Studio Parbhani">
     <meta property="og:title" content="Omii Cinematic | Professional Editor & Vlogger in Parbhani">
@@ -24,132 +30,143 @@
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700;900&display=swap');
+/* --- Root Variables for Theme Toggle --- */
+:root {
+    --text-outline: rgba(255, 255, 255, 0.6);
+    --shadow-color: rgba(0, 0, 0, 0.8);
+    --footer-text: #ffffff;
+}
 
-        :root {
-            --text-outline: rgba(255, 255, 255, 0.4);
-            --shadow-color: rgba(0, 0, 0, 0.8);
-            --footer-text: #ffffff;
-        }
+body.light-mode {
+    --text-outline: rgba(0, 0, 0, 0.3);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --footer-text: #333333;
+}
 
-        body {
-            margin: 0;
-            background-color: #000;
-            font-family: 'Poppins', sans-serif;
-            color: white;
-            overflow-x: hidden;
-        }
+/* --- Slider Section Container --- */
+.slider-section {
+    padding: 80px 0;
+    position: relative;
+    /* Removed solid background - it will now use the body's background */
+    background: transparent; 
+} .model-img {
+    position: absolute;
+    bottom: 0;
+    height: 70%;
+    z-index: 5;
+    filter: drop-shadow(0 0 30px var(--shadow-color));
+    
+    /* Animation Properties */
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
 
-        /* --- OLDER HEADER STYLES --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            position: fixed;
-            width: 90%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-        }
-        .logo { font-size: 1.5rem; font-weight: 900; text-decoration: none; color: white; }
-        .logo span { color: #ff3e3e; }
-        .nav-links { list-style: none; display: flex; gap: 20px; align-items: center; }
-        .nav-links a { text-decoration: none; color: white; font-weight: 300; font-size: 0.9rem; }
 
-        /* --- 3D SLIDER SECTION --- */
-        .slider-section {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1500px;
-            position: relative;
-        }
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--footer-text);
+    font-weight: 700;
+}
 
-        .slider {
-            position: absolute;
-            width: 180px;
-            height: 250px;
-            top: 25%;
-            transform-style: preserve-3d;
-            animation: autoRun 30s linear infinite;
-        }
+/* --- 3D Slider Area --- */
+.banner {
+    width: 100%;
+    height: 80vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    /* Removed background gradient to make it fully transparent */
+    background: transparent; 
+}
 
-        @keyframes autoRun {
-            from { transform: rotateX(-10deg) rotateY(0deg); }
-            to { transform: rotateX(-10deg) rotateY(360deg); }
-        }
+.banner .slider {
+    position: absolute;
+    width: 180px;
+    height: 250px;
+    top: 10%;
+    left: calc(50% - 90px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 25s linear infinite;
+    z-index: 2;
+}
 
-        .item {
-            position: absolute;
-            inset: 0;
-            transform: rotateY(calc((var(--p) - 1) * (360 / var(--q)) * 1deg)) translateZ(550px);
-        }
+@keyframes autoRun {
+    from { transform: perspective(1000px) rotateX(-12deg) rotateY(0deg); }
+    to { transform: perspective(1000px) rotateX(-12deg) rotateY(360deg); }
+}
 
-        .item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px var(--shadow-color);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+.banner .slider .item {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(calc((var(--p) - 1) * (360 / var(--q)) * 1deg)) translateZ(500px);
+}
 
-        /* --- CENTER CONTENT --- */
-        .content-layer {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none;
-        }
+.banner .slider .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.5s ease;
+}
 
-        .content-layer h1 {
-            font-size: 10vw;
-            color: transparent;
-            -webkit-text-stroke: 1.5px var(--text-outline);
-            text-transform: uppercase;
-            letter-spacing: 15px;
-            opacity: 0.3;
-        }
+/* --- Centerpiece Content --- */
+.content-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
 
-        .model-img {
-            position: absolute;
-            bottom: 0;
-            height: 80vh;
-            z-index: 5;
-            filter: drop-shadow(0 0 40px #000);
-            transition: transform 0.6s ease-in-out, opacity 0.5s;
-            transform-style: preserve-3d;
-        }
+.content-layer h1 {
+    font-size: 8vw;
+    font-weight: 900;
+    color: transparent; /* Solid text hidden */
+    white-space: nowrap;
+    margin: 0;
+    position: relative;
+}
 
-        /* --- OLDER FOOTER STYLES --- */
-        .footer {
-            padding: 50px 5%;
-            background: #0a0a0a;
-            text-align: center;
-        }
-        .footer-icons { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
-        .social-icon { color: white; font-size: 1.5rem; transition: 0.3s; }
-        .social-icon:hover { color: #ff3e3e; }
-        .footer-bottom { opacity: 0.5; font-size: 0.8rem; margin-top: 20px; }
+.content-layer h1::after {
+    position: absolute;
+    inset: 0;
+    content: attr(data-content);
+    z-index: 10;
+    -webkit-text-stroke: 1.5px var(--text-outline);
+    color: transparent;
+}
 
-        /* Author/Location Info overlay */
-        .slider-info {
-            position: absolute;
-            bottom: 120px;
-            width: 90%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 5%;
-            z-index: 10;
-        }
-        .slider-info h3 { margin: 0; font-size: 1.2rem; }
-        .slider-info p { margin: 0; opacity: 0.5; font-size: 0.7rem; text-transform: uppercase; }
+.model-img {
+    position: absolute;
+    bottom: 0;
+    height: 70%;
+    z-index: 5;
+    filter: drop-shadow(0 0 30px var(--shadow-color));
+}
+
+.slider-author {
+    position: absolute;
+    bottom: 30px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    color: var(--footer-text);
+    z-index: 12;
+    padding: 0 5%;
+}
+
+.slider-author h3 { margin: 0; font-size: 1.5rem; text-transform: uppercase; }
+.slider-author p { margin: 0; opacity: 0.6; font-size: 0.8rem; }
 
     </style>
 </head>
@@ -167,46 +184,78 @@
     </ul>
 </nav>
 
-
-<main class="slider-section">
-    <div class="slider" style="--q: 10;">
-        <div class="item" style="--p: 1;"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=600&fit=crop"></div>
-        <div class="item" style="--p: 2;"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400&h=600&fit=crop"></div>
-        <div class="item" style="--p: 3;"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=600&fit=crop"></div>
-        <div class="item" style="--p: 4;"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=600&fit=crop"></div>
-        <div class="item" style="--p: 5;"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=400&h=600&fit=crop"></div>
-        <div class="item" style="--p: 6;"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=600&fit=crop"></div>
-        <div class="item" style="--p: 7;"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=600&fit=crop"></div>
-        <div class="item" style="--p: 8;"><img src="https://images.unsplash.com/photo-1500622344773-5144bc48e7a2?w=400&h=600&fit=crop"></div>
-        <div class="item" style="--p: 9;"><img src="https://images.unsplash.com/photo-1433086566503-6714a55906b3?w=400&h=600&fit=crop"></div>
-        <div class="item" style="--p: 10;"><img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&h=600&fit=crop"></div>
+<header class="hero">
+    <div class="hero-content">
+        <h1>Create <span>Cinematic Stories</span></h1>
+        <p>Professional filmmaking tutorials for serious creators.</p>
+        <button class="btn">Start Learning</button>
     </div>
+</header>
 
-    <div class="content-layer">
-        <h1>OMINICINEMATICS</h1>
-        <img src="https://i.ibb.co/nq9hSPWN/1000175970.png" id="cameraman-model" class="model-img" alt="Cameraman">
+<section class="slider-section">
+    <h2 class="section-title">Featured Cinematic Shots</h2>
+
+    <div class="banner">
+        <div class="slider" style="--q: 10;">
+                        <div class="item" style="--p: 1;"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400&h=600&fit=crop" alt="Cinematic Mountains"></div>
+            <div class="item" style="--p: 2;"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=600&fit=crop" alt="Sunlight Forest"></div>
+            <div class="item" style="--p: 3;"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=600&fit=crop" alt="Alpine Lake"></div>
+            <div class="item" style="--p: 4;"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=400&h=600&fit=crop" alt="Nature Pathway"></div>
+            <div class="item" style="--p: 5;"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=600&fit=crop" alt="Blue Ridge Peaks"></div>
+            <div class="item" style="--p: 6;"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=600&fit=crop" alt="Sunset Valley"></div>
+            <div class="item" style="--p: 7;"><img src="https://images.unsplash.com/photo-1500622344773-5144bc48e7a2?w=400&h=600&fit=crop" alt="Aerial Nature"></div>
+            <div class="item" style="--p: 8;"><img src="https://images.unsplash.com/photo-1433086566503-6714a55906b3?w=400&h=600&fit=crop" alt="Tropical Waterfall"></div>
+            <div class="item" style="--p: 9;"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=600&fit=crop" alt="Grand Canyon Cinematic"></div>
+            <div class="item" style="--p: 10;"><img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&h=600&fit=crop" alt="Starry Night Landscape"></div>
+</div>
+
+        <div class="content-layer">
+            <h1 data-content="OMINICINEMATICS">OMINICINEMATICS</h1>
+            <img src="https://png.pngtree.com/png-vector/20231017/ourmid/pngtree-photographer-cameraman-on-a-transparent-background-png-image_10204646.png" 
+     id="cameraman-model" 
+     class="model-img" 
+     alt="Omii Cinematic Cameraman">
+
+            <div class="slider-author">
+                <div>
+                    <p>Vlogger & Editor</p>
+                    <h3>OMII CINEMATIC</h3>
+                </div>
+                <div>
+                    <p>Location</p>
+                    <h3>PARBHANI</h3>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="slider-info">
-        <div><p>Lead Editor</p><h3>OMII CINEMATIC</h3></div>
-        <div><p>Location</p><h3>PARBHANI</h3></div>
+<section class="content-section">
+    <h2 class="section-title">Why Choose Us?</h2>
+    <div class="features">
+        <div class="feature-card">
+            <h3>Professional Guidance</h3>
+            <p>Learn industry-level techniques step by step.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Creative Editing</h3>
+            <p>Master transitions, sound design and pacing.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Color Mastery</h3>
+            <p>Understand cinematic grading and film look.</p>
+        </div>
     </div>
-</main>
+</section>
 
-<footer align="center" class="footer">
+<footer class="footer">
     <div class="footer-content">
         <h2 class="logo">OMII <span>CINEMATIC</span></h2>
         <p>Turning moments into cinematic memories.</p>
-        
         <div class="footer-icons">
-            <a href="https://www.instagram.com/_omii.cinematics?igsh=cGEyNnZtbGFrYzI="  class="social-icon insta">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="mailto:omkarbhope06@gmail.com" class="social-icon mail">
-                <i class="fas fa-envelope"></i>
-            </a>
+            <a href="https://www.instagram.com/_omii.cinematics" target="_blank" class="social-icon insta"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:omkarbhope06@gmail.com" class="social-icon mail"><i class="fas fa-envelope"></i></a>
         </div>
-        
         <div class="footer-bottom">
             <p>&copy; 2026 OMII CINEMATIC | Designed with Passion</p>
         </div>
@@ -214,33 +263,48 @@
 </footer>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="script.js"> // Add this to your script.js or inside a <script> tag
+const modelImg = document.querySelector('.model-img');
+const images = [
+    "https://png.pngtree.com/png-vector/20231017/ourmid/pngtree-photographer-cameraman-on-a-transparent-background-png-image_10204646.png", // Original
+    "https://i.ibb.co/nq9hSPWN/image1.png",
+    "https://i.ibb.co/ZpZ092p7/image2.png",
+    "https://i.ibb.co/Rpg77v6z/image3.png",
+    "https://i.ibb.co/TBKpwQMK/image4.png"
+];
 
-<script>
-    const modelImg = document.getElementById('cameraman-model');
-    const images = [
-        "https://i.ibb.co/nq9hSPWN/1000175970.png",
-        "https://i.ibb.co/ZpZ092p7/1000175967.png",
-        "https://i.ibb.co/Rpg77v6z/1000175969.png",
-        "https://i.ibb.co/TBKpwQMK/1000175968.png"
-    ];
+let currentIndex = 0;
 
-    let currentIndex = 0;
+function rotateModelImage() {
+    // 1. Start the flip animation
+    modelImg.style.transform = "rotateY(90deg)";
+    modelImg.style.opacity = "0";
 
-    function flipAndChange() {
-        if (!modelImg) return;
-        modelImg.style.transform = "rotateY(90deg) scale(0.9)";
-        modelImg.style.opacity = "0";
+    setTimeout(() => {
+        // 2. Change the image source while invisible
+        currentIndex = (currentIndex + 1) % images.length;
+        modelImg.src = images[currentIndex];
 
-        setTimeout(() => {
-            currentIndex = (currentIndex + 1) % images.length;
-            modelImg.src = images[currentIndex];
-            modelImg.style.transform = "rotateY(0deg) scale(1)";
-            modelImg.style.opacity = "1";
-        }, 600);
-    }
-    setInterval(flipAndChange, 5000);
+        // 3. Flip back to normal
+        modelImg.style.transform = "rotateY(0deg)";
+        modelImg.style.opacity = "1";
+    }, 400); // Wait for half the transition time to swap
+}
+
+// Change image every 3 seconds
+setInterval(rotateModelImage, 3000);
+
 </script>
-
 </body>
 </html>
 
+
+
+
+
+
+
+ef="gear.html">Gear</a></li>
+        <div class="theme-switch" id="themeToggle"></div>
+    </ul>
+</nav>
