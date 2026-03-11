@@ -23,6 +23,56 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700;900&display=swap');
+:root {
+    /* Default Dark Mode Colors */
+    --bg-color: #000000;
+    --card-bg: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+    --text-outline: rgba(255, 255, 255, 0.6);
+    --shadow-color: rgba(0, 0, 0, 0.8);
+}
+
+/* These colors will activate when the 'light-mode' class is added to the body */
+body.light-mode {
+    --bg-color: #ffffff;
+    --card-bg: radial-gradient(circle, #f0f0f0 0%, #e0e0e0 100%);
+    --text-outline: rgba(0, 0, 0, 0.3);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.slider-section {
+    background-color: var(--bg-color); /* This now changes! */
+    transition: background-color 0.5s ease;
+    padding: 50px 0;
+    position: relative;
+}
+
+.banner {
+    width: 100%;
+    height: 80vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    background: var(--card-bg); /* This now changes! */
+    transition: background 0.5s ease;
+}
+
+.content-layer h1::after {
+    position: absolute;
+    inset: 0;
+    content: attr(data-content);
+    z-index: 10;
+    -webkit-text-stroke: 1.5px var(--text-outline); /* Outline changes color */
+    color: transparent;
+}
+
+.banner .slider .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 0 25px var(--shadow-color);
+    border: 1px solid rgba(255,255,255,0.1);
+}
 
         /* Integration Styles */
         .slider-section {
@@ -233,6 +283,22 @@
 </footer>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<script src="script.js"></script>
+<script src="script.js">  const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    
+    // Optional: Save preference to local storage
+    const isLight = body.classList.contains('light-mode');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+});
+
+// Load saved theme on page start
+if (localStorage.getItem('theme') === 'light') {
+    body.classList.add('light-mode');
+}
+</script>
 </body>
 </html>
+
