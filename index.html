@@ -22,6 +22,144 @@
     </script>
 
     <style>
+      /* --- KEEP YOUR EXISTING ROOT VARIABLES --- */
+:root {
+    --bg: #050507;
+    --surface: #111114;
+    --surface-hover: #1a1a1e;
+    --text: #ffffff;
+    --text-dim: #94a3b8;
+    --accent: #ffcc00; 
+    --accent-rgb: 255, 204, 0;
+    --border: rgba(255, 255, 255, 0.08);
+    --glass: rgba(18, 18, 20, 0.9);
+    --shadow: 0 20px 40px rgba(0,0,0,0.4);
+    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* --- UNIVERSAL FIXES --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* --- RESPONSIVE NAVIGATION --- */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 5%; height: 70px; position: fixed; top: 0; width: 100%;
+    z-index: 1000; background: var(--glass); backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Mobile Hamburger Button (Hidden on Desktop) */
+.menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text);
+}
+
+/* --- HERO SECTION SCALING --- */
+.hero {
+    padding: 150px 5% 80px;
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- THE 3D SLIDER (FIXED FOR MOBILE) --- */
+.banner {
+    width: 100%;
+    height: 60vh; /* Reduced height for mobile */
+    perspective: 1000px;
+    overflow: visible;
+}
+
+.banner .slider {
+    position: absolute;
+    width: 150px; /* Smaller base size */
+    height: 200px;
+    top: 20%;
+    left: calc(50% - 75px);
+    transform-style: preserve-3d;
+    animation: autoRun 25s linear infinite;
+}
+
+/* Scale the 3D distance based on screen size */
+.banner .slider .item {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(calc((var(--p) - 1) * (360 / var(--q)) * 1deg)) translateZ(350px);
+}
+
+@keyframes autoRun {
+    from { transform: perspective(1000px) rotateX(-10deg) rotateY(0deg); }
+    to { transform: perspective(1000px) rotateX(-10deg) rotateY(360deg); }
+}
+
+/* --- GRID SYSTEM --- */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 40px 5%;
+}
+
+.feature-card {
+    background: var(--surface);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+/* --- MOBILE RESPONSIVE QUERIES (THE MAGIC) --- */
+@media (max-width: 768px) {
+    .menu-btn { display: block; }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%; /* Hide off-screen */
+        flex-direction: column;
+        background: var(--surface);
+        width: 100%;
+        height: calc(100vh - 70px);
+        padding: 40px;
+        transition: 0.5s ease;
+        gap: 20px;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .hero h1 { font-size: 2.5rem; }
+    
+    /* Adjusting 3D Slider for Small Screens */
+    .banner .slider {
+        width: 100px;
+        height: 140px;
+        left: calc(50% - 50px);
+    }
+    .banner .slider .item {
+        transform: rotateY(calc((var(--p) - 1) * (360 / var(--q)) * 1deg)) translateZ(220px);
+    }
+    
+    .content-layer h1 { font-size: 15vw; }
+
+    .video blockquote {
+        width: 100% !important;
+    }
+}
+
 /* --- Root Variables for Theme Toggle --- */
 :root {
     --text-outline: rgba(255, 255, 255, 0.6);
@@ -227,7 +365,55 @@ body.light-mode {
 </footer>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<script src="script.js"></script ></body>
+<script src="script.js"> document.addEventListener('DOMContentLoaded', () => {
+    // 1. Mobile Menu Logic
+    const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelector('.nav-links');
+    
+    // Create Menu Button Dynamically
+    const menuBtn = document.createElement('div');
+    menuBtn.className = 'menu-btn';
+    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    navbar.appendChild(menuBtn);
+
+    menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuBtn.innerHTML = navLinks.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
+            : '<i class="fas fa-bars"></i>';
+    });
+
+    // 2. Close menu when a link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+
+    // 3. Dynamic Device Detection for Performance
+    const isMobile = window.innerWidth <= 768;
+    const slider = document.querySelector('.slider');
+
+    if (isMobile && slider) {
+        // Slow down the animation on mobile for better performance
+        slider.style.animationDuration = '35s';
+    }
+
+    // 4. Handle Theme Toggle (If you haven't implemented it)
+    const themeBtn = document.getElementById('themeToggle');
+    themeBtn.addEventListener('click', () => {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.body.setAttribute('data-theme', savedTheme);
+});
+</script ></body>
 </html>
 
 
