@@ -102,7 +102,6 @@ body {
 .video blockquote::before {
     content: "";
     display: block;
-    background: white;
     border-radius: 15px;
     position: absolute;
 }
@@ -170,6 +169,7 @@ footer { padding: 60px 10%; background: var(--surface); border-top: 1px solid va
     .slide.prev { transform: translate3d(-100px, 0, 0) scale(0.6); }
     .slide.next { transform: translate3d(100px, 0, 0) scale(0.6); }
 }
+
 
 
 
