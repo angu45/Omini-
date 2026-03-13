@@ -6,7 +6,6 @@
     --text: #c9d1d9; 
     --border: rgba(255, 255, 255, 0.1); 
     --header: #010409;
-    --header-height: 60px; /* This is our fixed imaginary line start */
 }
 
 * { 
@@ -15,7 +14,6 @@
     box-sizing: border-box; 
 }
 
-/* Force the body to never grow beyond the screen height */
 html, body { 
     height: 100vh;
     width: 100vw;
@@ -28,10 +26,10 @@ body {
     flex-direction: column; 
 }
 
-/* --- 2. THE SOLID HEADER (FIXED BOUNDARY) --- */
+/* --- 2. HEADER --- */
 header { 
     background: var(--header); 
-    height: var(--header-height);
+    height: 60px;
     width: 100%;
     display: flex; 
     justify-content: space-between; 
@@ -39,7 +37,7 @@ header {
     padding: 0 20px;
     border-bottom: 2px solid var(--accent); 
     z-index: 1000; 
-    flex-shrink: 0; /* Header will NEVER disappear or shrink */
+    flex-shrink: 0;
 }
 
 .logo-container { display: flex; align-items: center; gap: 12px; }
@@ -54,15 +52,12 @@ header {
 }
 .run-btn { background: var(--accent) !important; color: #000 !important; font-weight: 800; border: none; }
 
-/* --- 3. THE IMAGINARY BORDER CONTAINER --- */
-/* This is the box that holds the editors within a fixed 0.5px gap area */
+/* --- 3. MAIN CONTAINER & EDITOR BOXES --- */
 .main-container { 
     flex: 1; 
-    height: calc(100vh - var(--header-height)); 
+    height: calc(100vh - 100px); /* Adjust for 60px Header + 40px Footer */
     display: flex;
-    padding: 0.5px; /* Your requested 0.5px gap from the boundary */
     overflow: hidden; 
-    background: var(--border); /* This acts as your imaginary border line */
 }
 
 .editor-section { 
@@ -70,62 +65,106 @@ header {
     display: flex; 
     flex-direction: column; 
     height: 100%;
-    width: 100%;
-    background: var(--bg);
-    overflow: hidden; /* Prevents children from leaking out */
 }
 
-/* --- 4. THE TEXTAREA BOXES (STRICTLY CONFINED) --- */
 .editor-box { 
     flex: 1; 
     display: flex; 
     flex-direction: column; 
     border-bottom: 1px solid var(--border); 
-    min-height: 0; /* Important: Tells the browser "Don't grow based on content" */
-    height: 33.33%; /* Divides space equally */
+    min-height: 0;
 }
 
 .label { 
     background: rgba(0,0,0,0.6); 
-    padding: 4px 15px; 
-    font-size: 10px; 
+    padding: 8px 15px; 
+    font-size: 11px; 
     font-weight: 800; 
     color: var(--accent); 
-    flex-shrink: 0; 
-    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Window Controls Styles */
+.window-controls {
+    display: flex;
+    gap: 12px;
+}
+
+.window-controls i {
+    cursor: pointer;
+    font-size: 11px;
+    opacity: 0.6;
+    transition: 0.2s;
+}
+
+.window-controls i:hover {
+    opacity: 1;
+    color: var(--accent);
 }
 
 textarea { 
     flex: 1; 
     width: 100%;
-    height: 100%;
     background: transparent; 
     border: none; 
     color: #9cdcfe; 
     font-family: 'Fira Code', monospace; 
-    padding: 12px; 
+    padding: 15px; 
     resize: none; 
     outline: none; 
     font-size: 14px; 
-    line-height: 1.5; 
-    overflow-y: auto; /* Internal scrolling only */
-    overflow-x: hidden;
-    white-space: pre-wrap; /* Wraps long code lines to prevent horizontal expansion */
-    word-break: break-all;
+    line-height: 1.6; 
+    overflow-y: auto;
+    white-space: pre;
 }
 
-/* Custom Scrollbar */
-textarea::-webkit-scrollbar { width: 4px; }
-textarea::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+/* --- 4. FOOTER STYLES --- */
+footer {
+    height: 40px;
+    background: var(--header);
+    border-top: 2px solid var(--accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    z-index: 1000;
+    flex-shrink: 0;
+}
 
-/* --- 5. OVERLAYS --- */
-.preview-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #fff; z-index: 99999; display: none; flex-direction: column;
+.footer-left, .footer-right { display: flex; align-items: center; gap: 15px; }
+
+.foot-btn {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
 }
-.settings-panel { 
-    position: fixed; right: -350px; top: 0; width: 320px; height: 100%; 
-    background: var(--panel); border-left: 2px solid var(--accent); 
-    z-index: 1000000; padding: 25px; transition: 0.3s; visibility: hidden;
+
+.file-tabs { display: flex; gap: 8px; border-left: 1px solid var(--border); padding-left: 15px; }
+
+.tab {
+    font-size: 10px;
+    padding: 3px 10px;
+    background: var(--panel);
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--border);
 }
+
+.tab.active { background: var(--accent); color: #000; font-weight: 800; border: none; }
+
+.file-count { font-size: 10px; opacity: 0.7; }
+
+/* --- 5. OVERLAYS (PREVIEW & SETTINGS) --- */
+.preview-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 99999; display: none; flex-direction: column; }
+.settings-panel { position: fixed; right: -350px; top: 0; width: 320px; height: 100%; background: var(--panel); border-left: 2px solid var(--accent); z-index: 1000000; padding: 25px; transition: 0.3s; visibility: hidden; }
 .settings-panel.open { right: 0; visibility: visible; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
